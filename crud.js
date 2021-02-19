@@ -96,14 +96,15 @@ function fetchData() {
                         } else {
                             let newData = localStorage.getItem("data")
                             let newData2 = JSON.parse(newData)
-                            for (let i = 0; i < data.length; i++) {
+                            console.log(newData2)
+                            for (let i = 0; i < newData2.length; i++) {
                                 temp += "<tr>";
                                 temp += "<td>" + newData2[i].id + "</td>";
                                 temp += "<td>" + newData2[i].name + "</td>";
                                 temp += "<td>" + newData2[i].username + "</td>";
-                                temp += "<td>" + newData2[i].email + "</td>";
                                 temp += "<td>" + newData2[i].phone + "</td>";
-                                temp += '<td><button onclick="onEdit(this)" data-toggle="modal" data-target="#exampleModal">Edit</button> <button onClick="onDelete(this)">Delete</button></td></tr>';
+                                temp += "<td>" + newData2[i].email + "</td>";
+                                temp += "<td><button class='btn btn-warning' onClick='onEdit(this)' data-toggle='modal' data-target='#exampleModal'>Edit</button> <button class='btn btn-danger' onClick='onDelete(this)'>Delete</button>";
                             }
                         }
                         document.getElementById("data").innerHTML = temp;
