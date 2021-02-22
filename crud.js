@@ -7,8 +7,8 @@ function tableRowCount() {
 }
 
 function onFormSubmit() {
-    var validateName = document.getElementById("name").value;
-    if (validateName != "") {
+    // var validateName = document.getElementById("name").value;
+    if (document.getElementById("name").value != "" && document.getElementById("uname").value != "" && document.getElementById("email").value != "" && document.getElementById("pno").value != "") {
         var formData = readFormData();
         if (selectedRow == null) {
             addRecord(formData);
@@ -18,7 +18,7 @@ function onFormSubmit() {
         resetForm();
         tableRowCount();
     } else {
-        alert('Enter Your Name')
+        alert('Insufficient Details !')
     }
 
 }
