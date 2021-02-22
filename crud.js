@@ -67,7 +67,7 @@ function addRecord(data) {
     cell5 = newRow.insertCell(4);
     cell5.innerHTML = data.pno;
     cell6 = newRow.insertCell(5);
-    cell6.innerHTML = `<button  onclick="onEdit(this)" data-toggle="modal" data-target="#exampleModal">&#xE254</button> <button  data-toggle='modal' data-target='#delete' onClick='onDelete2(this)'>Delete</button>`;
+    cell6.innerHTML = `<button  onclick="onEdit(this)" data-toggle="modal" data-target="#exampleModal">Edit</button> <button  data-toggle='modal' data-target='#delete' onClick='onDelete2(this)'>Delete</button>`;
 
 }
 
