@@ -3,7 +3,7 @@ var x = 1;
 
 function tableRowCount() {
     x = document.getElementById("details").rows.length;
-    document.getElementById('rowCount').innerHTML = "Total Rows " + (x - 1);
+    document.getElementById("rowCount").innerHTML = "Total Rows " + (x - 1);
 }
 
 function onFormSubmit() {
@@ -67,7 +67,7 @@ function addRecord(data) {
     cell5 = newRow.insertCell(4);
     cell5.innerHTML = data.pno;
     cell6 = newRow.insertCell(5);
-    cell6.innerHTML = `<button  onclick="onEdit(this)" data-toggle="modal" data-target="#exampleModal">Edit</button> <button  data-toggle='modal' data-target='#delete' onClick='onDelete2(this)'>Delete</button>`;
+    cell6.innerHTML = `<button  onclick="onEdit(this)" data-toggle="modal" data-target="#exampleModal">&#xE254</button> <button  data-toggle='modal' data-target='#delete' onClick='onDelete2(this)'>Delete</button>`;
 
 }
 
@@ -128,7 +128,7 @@ function fetchData() {
                                 temp += "<td>" + newData2[i].username + "</td>";
                                 temp += "<td>" + newData2[i].phone + "</td>";
                                 temp += "<td>" + newData2[i].email + "</td>";
-                                temp += "<td><button onClick='onEdit(this)' data-toggle='modal' data-target='#exampleModal'>Edit</button> <button data-toggle='modal' data-target='#delete' onClick='onDelete2(this)'>Delete</button>";
+                                temp += "<td><button onClick='onEdit(this)' data-toggle='modal' data-target='#exampleModal'> Edit</button> <button data-toggle='modal' data-target='#delete' onClick='onDelete2(this)'>Delete</button>";
                             }
                         }
                         document.getElementById("data").innerHTML = temp;
