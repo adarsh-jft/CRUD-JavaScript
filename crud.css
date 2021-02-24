@@ -13,3 +13,12 @@ table {
     margin-bottom: 40px;
     border-bottom: 10px;
 }
+
+#records {
+    top: 45%;
+    left: 35%;
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bold;
+    position: absolute;
+}

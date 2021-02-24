@@ -4,22 +4,20 @@ var x = 1;
 function tableRowCount() {
     x = document.getElementById("details").rows.length;
     document.getElementById("rowCount").innerHTML = "Total Rows " + (x - 1);
+    if ((x - 1) === 0) {
+        document.getElementById('records').innerHTML = "NO RECORDS FOUND !!"
+    }
 }
 
 function onFormSubmit() {
-    // var validateName = document.getElementById("name").value;
-    if (document.getElementById("name").value != "" && document.getElementById("uname").value != "" && document.getElementById("email").value != "" && document.getElementById("pno").value != "") {
-        var formData = readFormData();
-        if (selectedRow == null) {
-            addRecord(formData);
-        } else {
-            updateRecords(formData);
-        }
-        resetForm();
-        tableRowCount();
+    var formData = readFormData();
+    if (selectedRow == null) {
+        addRecord(formData);
     } else {
-        alert('Insufficient Details !')
+        updateRecords(formData);
     }
+    resetForm();
+    tableRowCount();
 
 }
 
@@ -28,16 +26,14 @@ function readFormData() {
         id: x,
         name: document.getElementById("name").value,
         username: document.getElementById("uname").value,
-        phone: document.getElementById("email").value,
-        email: document.getElementById("pno").value
+        phone: document.getElementById("pno").value,
+        email: document.getElementById("email").value
     }
     if (!localStorage.getItem("data")) {
         localStorage.setItem('data', data)
     } else {
         let stored = localStorage.getItem('data')
         let stored_obj = JSON.parse(stored);
-        // var stored=JSON.parse(localStorage.getItem("data"))
-        //console.log(stored_obj)
         stored_obj.push(formData)
         console.log(stored_obj)
         let myObj = JSON.stringify(stored_obj)
@@ -47,8 +43,8 @@ function readFormData() {
     FormData["id"] = x;
     FormData["name"] = document.getElementById("name").value;
     FormData["uname"] = document.getElementById("uname").value;
-    FormData["email"] = document.getElementById("email").value;
     FormData["pno"] = document.getElementById("pno").value;
+    FormData["email"] = document.getElementById("email").value;
     return FormData;
 }
 
@@ -74,25 +70,26 @@ function addRecord(data) {
 function resetForm() {
     document.getElementById("name").value = "";
     document.getElementById("uname").value = "";
-    document.getElementById("email").value = "";
     document.getElementById("pno").value = "";
+    document.getElementById("email").value = "";
     selectedRow = null;
 }
 
 function onEdit(td) {
+    document.getElementById("exampleModalLabel").innerHTML = "Edit Details";
+    document.getElementById("add1").innerHTML = "Edit";
     selectedRow = td.parentElement.parentElement;
-    document.getElementById("id").value = selectedRow.cells[0].innerHTML;
     document.getElementById("name").value = selectedRow.cells[1].innerHTML;
     document.getElementById("uname").value = selectedRow.cells[2].innerHTML;
-    document.getElementById("email").value = selectedRow.cells[3].innerHTML;
-    document.getElementById("pno").value = selectedRow.cells[4].innerHTML;
+    document.getElementById("pno").value = selectedRow.cells[3].innerHTML;
+    document.getElementById("email").value = selectedRow.cells[4].innerHTML;
 }
 
 function updateRecords(formData) {
     selectedRow.cells[1].innerHTML = formData.name;
     selectedRow.cells[2].innerHTML = formData.uname;
-    selectedRow.cells[3].innerHTML = formData.email;
-    selectedRow.cells[4].innerHTML = formData.pno;
+    selectedRow.cells[3].innerHTML = formData.pno;
+    selectedRow.cells[4].innerHTML = formData.email;
 }
 
 function onDelete() {
@@ -110,8 +107,6 @@ function fetchData() {
         res => {
             res.json().then(
                 data => {
-                    // console.log(data);
-
                     if (data.length > 0) {
                         var temp = "";
                         x = data.length + 1;
@@ -129,6 +124,7 @@ function fetchData() {
                                 temp += "<td>" + newData2[i].phone + "</td>";
                                 temp += "<td>" + newData2[i].email + "</td>";
                                 temp += "<td><button onClick='onEdit(this)' data-toggle='modal' data-target='#exampleModal'> Edit</button> <button data-toggle='modal' data-target='#delete' onClick='onDelete2(this)'>Delete</button>";
+                                document.getElementById('rowCount').innerHTML = "Total Data " + (i + 1);
                             }
                         }
                         document.getElementById("data").innerHTML = temp;
@@ -143,3 +139,9 @@ function fetchData() {
 }
 
 fetchData();
+
+function Modaldata() {
+    resetForm();
+    document.getElementById("exampleModalLabel").innerHTML = "Enter Details";
+    document.getElementById("add1").innerHTML = "Add";
+}
